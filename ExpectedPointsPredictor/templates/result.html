@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expected Points Result</title>
+    <style>
+        /* Center everything on the page */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #3b7a57; /* Football turf green */
+            color: #ffffff; /* White text for contrast */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add vertical yard lines every 10 yards */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to right,
+                transparent,
+                transparent 10%, /* Space for 10 yards */
+                white 10%,       /* Vertical line */
+                white 10.1%      /* Width of the line */
+            );
+            z-index: 0; /* Ensure lines are below the content */
+        }
+
+        /* Add evenly spaced small hash marks */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 45%; /* Adjust the vertical placement of hash marks */
+            left: 0;
+            width: 100%;
+            height: 10%; /* Height where hash marks appear */
+            background: repeating-linear-gradient(
+                to right,
+                transparent,
+                transparent 2.5%, /* Space between each hash mark */
+                white 2.5%,       /* Hash mark */
+                white 2.6%        /* Width of the hash mark */
+            );
+            background-size: 100% 10%; /* Hash marks reset every 10 yards */
+            z-index: 0; /* Ensure hash marks are below the content */
+        }
+
+        /* Style the results container */
+        .result-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #000000; /* Black text inside the container */
+            position: relative;
+            z-index: 2; /* Keep the container above the background */
+            max-width: 300px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Expected Points</h1>
+        <p>Your Expected Points: {{ expected_points }}</p>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
